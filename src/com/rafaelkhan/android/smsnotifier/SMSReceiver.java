@@ -5,11 +5,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.telephony.SmsMessage;
+import android.util.Log;
 
 public class SMSReceiver extends BroadcastReceiver {
 
 	@Override
 	public void onReceive(Context context, Intent intent) {
+		Log.d("asd","ASD");
 		Bundle bundle = intent.getExtras();
 
 		if(bundle != null) {	
@@ -21,14 +23,16 @@ public class SMSReceiver extends BroadcastReceiver {
 				String sender = msgs[i].getOriginatingAddress();
 				String message = msgs[i].getMessageBody();
 				
-				this.startNewActivity(sender,message,context);
+				this.createNewPopup(sender,message,context);
 			}
 		}
 	}
 	
-	public void startNewActivity(String sender, String message, Context context) { //brings up dialog
+	public void createNewPopup(String sender, String message, Context context) { //brings up dialog
 		Intent in = new Intent(context, SMSReceivedActivity.class);
 		in.putExtra("sender", sender);
 		in.putExtra("message", message);
+		in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		context.startActivity(in);
 	}
 }
