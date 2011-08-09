@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" 
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent" 
+	android:padding="5dp">
+	
+	<RelativeLayout 
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content" 
+		android:id="@+id/relativeLayout1">
+		
+		<ImageView 
+			android:src="@drawable/icon" 
+			android:id="@+id/imageView1"
+			android:layout_height="wrap_content" 
+			android:layout_width="wrap_content"
+			android:layout_alignParentLeft="true"/>	
+			
+		<TextView 
+			android:text="TextView" 
+			android:layout_toRightOf="@+id/imageView1"
+			android:id="@+id/contact_name_view" 
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content" 
+			android:layout_alignTop="@+id/imageView1" 
+			android:layout_marginBottom="2dp" 
+			android:textSize="19dp" 
+			android:textColor="@android:color/white"/>
+
+		<TextView 
+			android:text="TextView" 
+			android:layout_below="@+id/contact_name_view"
+			android:id="@+id/phone_number_view" 
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content" 
+			android:layout_alignLeft="@+id/contact_name_view"
+			android:layout_alignRight="@+id/contact_name_view" 
+			android:textSize="14dp" 
+			android:textColor="@android:color/white"/>
+			
+		<TextView 
+			android:text="TextView" 
+			android:layout_below="@+id/imageView1"
+			android:id="@+id/message_body_view" 
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content" 
+			android:layout_marginTop="7dp"/>
+			
+	</RelativeLayout>
+</LinearLayout>
