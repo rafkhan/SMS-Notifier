@@ -38,14 +38,63 @@
 			android:layout_alignRight="@+id/contact_name_view" 
 			android:textSize="14dp" 
 			android:textColor="@android:color/white"/>
-			
+		
 		<TextView 
 			android:text="TextView" 
 			android:layout_below="@+id/imageView1"
 			android:id="@+id/message_body_view" 
 			android:layout_height="wrap_content"
 			android:layout_width="wrap_content" 
-			android:layout_marginTop="7dp"/>
+			android:layout_marginTop="7dp" 
+			android:layout_marginBottom="10dp"/>
+		
+		<Button 
+			android:layout_below="@+id/message_body_view" 
+			android:layout_width="wrap_content" 
+			android:layout_height="wrap_content" 
+			android:id="@+id/send_button" 
+			android:layout_alignParentRight="true"
+			android:layout_alignTop="@+id/text_input" 
+			android:layout_alignBottom="@+id/text_input" 
+			android:text="@string/send"
+			android:visibility="gone"/>
+			
+		<EditText
+			android:layout_below="@+id/message_body_view" 
+			android:id="@+id/text_input" 
+			android:inputType="textMultiLine" 
+			android:layout_width="wrap_content" 
+			android:layout_height="wrap_content" 
+			android:layout_toLeftOf="@+id/send_button" 
+			android:layout_alignParentLeft="true" 
+			android:visibility="gone">
+			<requestFocus></requestFocus>
+		</EditText>
+			
+			
 			
 	</RelativeLayout>
+	
+	<LinearLayout 
+		android:layout_width="fill_parent" 
+		android:layout_height="wrap_content" 
+		android:id="@+id/linearLayout1" 
+		android:layout_marginTop="10dp">
+		
+		<Button 
+			android:layout_width="wrap_content" 
+			android:text="@string/dismiss" 
+			android:layout_height="wrap_content" 
+			android:id="@+id/dismiss_button"
+			android:onClick="dismissButton"/>
+			
+		<Button 
+			android:layout_width="wrap_content" 
+			android:text="@string/reply" 
+			android:layout_height="wrap_content" 
+			android:id="@+id/reply_button"
+			android:onClick="replyButton"/>
+			
+	</LinearLayout>
+	
 </LinearLayout>
