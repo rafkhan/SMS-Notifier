@@ -12,10 +12,6 @@
 
 		<activity android:name=".SMSReceivedActivity" android:label="@string/app_name"
 			android:theme="@style/dialog_theme">
-			<intent-filter>
-				<action android:name="android.intent.action.MAIN" />
-				<category android:name="android.intent.category.LAUNCHER" />
-			</intent-filter>
 		</activity>
 
 		<receiver android:name=".SMSReceiver" android:enabled="true">
