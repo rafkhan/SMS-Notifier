@@ -10,13 +10,15 @@
 		android:layout_height="wrap_content" 
 		android:id="@+id/relativeLayout1">
 		
+		<!-- Contact image -->
 		<ImageView 
 			android:src="@drawable/icon" 
 			android:id="@+id/imageView1"
 			android:layout_height="wrap_content" 
 			android:layout_width="wrap_content"
 			android:layout_alignParentLeft="true"/>	
-			
+		
+		<!-- Contact name -->
 		<TextView 
 			android:text="TextView" 
 			android:layout_toRightOf="@+id/imageView1"
@@ -28,6 +30,7 @@
 			android:textSize="19dp" 
 			android:textColor="@android:color/white"/>
 
+		<!-- Phone number -->
 		<TextView 
 			android:text="TextView" 
 			android:layout_below="@+id/contact_name_view"
@@ -39,17 +42,38 @@
 			android:textSize="14dp" 
 			android:textColor="@android:color/white"/>
 		
+		<!-- divider -->
+		<View android:id="@+id/divider1"
+    		android:background="@drawable/gradient_divider"
+    		android:layout_width="fill_parent"
+    		android:layout_height="1dp"
+    		android:layout_below="@id/imageView1" 
+    		android:layout_marginTop="7dp"
+    		android:layout_marginBottom="4dp"/>
+		
+		<!-- SMS text body -->
 		<TextView 
 			android:text="TextView" 
-			android:layout_below="@+id/imageView1"
+			android:layout_below="@+id/divider1"
 			android:id="@+id/message_body_view" 
 			android:layout_height="wrap_content"
 			android:layout_width="wrap_content" 
 			android:layout_marginTop="7dp" 
 			android:layout_marginBottom="10dp"/>
+			
+		<!-- divider -->
+		<View android:id="@+id/divider2"
+    		android:background="@drawable/gradient_divider"
+    		android:layout_width="fill_parent"
+    		android:layout_height="1dp"
+    		android:layout_below="@id/message_body_view" 
+    		android:layout_marginTop="4dp"
+    		android:layout_marginBottom="7dp"/>
 		
-		<Button 
-			android:layout_below="@+id/message_body_view" 
+		<!-- send button 
+		visibility = "gone" by default-->
+		<Button
+			android:layout_below="@+id/divider2" 
 			android:layout_width="wrap_content" 
 			android:layout_height="wrap_content" 
 			android:id="@+id/send_button" 
@@ -57,8 +81,11 @@
 			android:layout_alignTop="@+id/text_input" 
 			android:layout_alignBottom="@+id/text_input" 
 			android:text="@string/send"
+			android:onClick="sendButton"
 			android:visibility="gone"/>
-			
+		
+		<!-- Textfield
+		visibility = "gone" by default-->
 		<EditText
 			android:layout_below="@+id/message_body_view" 
 			android:id="@+id/text_input" 
@@ -69,9 +96,7 @@
 			android:layout_alignParentLeft="true" 
 			android:visibility="gone">
 			<requestFocus></requestFocus>
-		</EditText>
-			
-			
+		</EditText>	
 			
 	</RelativeLayout>
 	
@@ -81,13 +106,18 @@
 		android:id="@+id/linearLayout1" 
 		android:layout_marginTop="10dp">
 		
+		<!-- dismiss button 
+		this button closes the activity-->
 		<Button 
 			android:layout_width="wrap_content" 
 			android:text="@string/dismiss" 
 			android:layout_height="wrap_content" 
 			android:id="@+id/dismiss_button"
 			android:onClick="dismissButton"/>
-			
+		
+		<!-- reply button
+		this button changes the visibility of the
+		send button and text field-->
 		<Button 
 			android:layout_width="wrap_content" 
 			android:text="@string/reply" 
