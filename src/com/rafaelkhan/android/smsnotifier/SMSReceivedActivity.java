@@ -190,5 +190,6 @@ public class SMSReceivedActivity extends Activity {
 
 		SmsManager sms = SmsManager.getDefault();
 		sms.sendTextMessage(phoneNumber, null, message, sentPI, deliveredPI);
+		moveTaskToBack(true);
 	}
 }
