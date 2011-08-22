@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.ContentUris;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -44,6 +45,36 @@ public class SMSReceivedActivity extends Activity {
 		}
 	}
 
+	@Override
+	public void onDestroy() {
+		super.onDestroy();
+	}
+
+	@Override
+	public void onStop() {
+		super.onStop();
+		finish();
+	}
+	
+	@Override
+	public void onPause() {
+		super.onPause();
+		finish();
+	}
+
+	@Override
+	public void onResume() {
+		super.onResume();
+		if (this.getIntentExtras()) { // bundle is not null
+			this.setSMSData();
+		}
+	}
+	
+	@Override
+	public boolean onSearchRequested() {
+		return false;
+	}
+
 	public boolean getIntentExtras() {
 		Bundle bundle = getIntent().getExtras();
 		if (bundle != null) {
@@ -74,7 +105,7 @@ public class SMSReceivedActivity extends Activity {
 	}
 
 	private String getContactName(String number) { // this method also sets the
-													// id
+		// id
 		Uri uri = Uri.withAppendedPath(PhoneLookup.CONTENT_FILTER_URI, Uri
 				.encode(number));
 		Cursor c = getApplicationContext().getContentResolver().query(uri,
@@ -113,27 +144,27 @@ public class SMSReceivedActivity extends Activity {
 		}
 		return null;
 	}
-	
+
 	public void replyButton(View v) {
 		EditText et = (EditText) findViewById(R.id.text_input);
 		Button bt = (Button) findViewById(R.id.send_button);
 		et.setVisibility(View.VISIBLE);
 		bt.setVisibility(View.VISIBLE);
 	}
-	
+
 	public void dismissButton(View v) {
-		moveTaskToBack(true);
+		finish();
 	}
-	
+
 	public void sendButton(View v) {
 		EditText et = (EditText) findViewById(R.id.text_input);
 		String message = et.getText().toString();
-		
+
 		this.sendSMS(this.sender, message);
 	}
-	
-	//I found this method on the interwebs
-	//http://mobiforge.com/developing/story/sms-messaging-android
+
+	// I found this method on the interwebs
+	// http://mobiforge.com/developing/story/sms-messaging-android
 	private void sendSMS(String phoneNumber, String message) {
 		String SENT = "SMS_SENT";
 		String DELIVERED = "SMS_DELIVERED";
@@ -190,6 +221,12 @@ public class SMSReceivedActivity extends Activity {
 
 		SmsManager sms = SmsManager.getDefault();
 		sms.sendTextMessage(phoneNumber, null, message, sentPI, deliveredPI);
-		moveTaskToBack(true);
+		
+		ContentValues values = new ContentValues();
+        values.put("address", phoneNumber);
+        values.put("body", message);
+        // Note: This uses an Android internal API to save to Sent-folder
+        this.getContentResolver().insert(Uri.parse("content://sms/sent"), values);
+        finish();
 	}
 }
